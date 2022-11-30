@@ -10,9 +10,6 @@ let layout = [
 ];
 
 export default React.memo(function ReactGridLayoutComponent() {
-  React.useEffect(() => {
-    console.log(layout);
-  }, [layout]);
   return (
     <Box sx={{ mt: "20px" }}>
       <div>{JSON.stringify(layout)}</div>
@@ -23,9 +20,6 @@ export default React.memo(function ReactGridLayoutComponent() {
           cols={12}
           rowHeight={30}
           width={1200}
-          onDrop={(layout: any, layoutItem: any, _event: any) => {
-            console.log(layout, layoutItem, _event);
-          }}
         >
           <Box key="a" sx={{ border: "1px dashed grey" }}>
             a

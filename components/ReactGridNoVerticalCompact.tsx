@@ -11,8 +11,6 @@ import { widget } from "../state/zustand";
 const ReactGridLayout = WidthProvider(RGL);
 
 export default React.memo(function ReactGridNoVerticalCompact() {
-  const [elements, setElements] = React.useState([]);
-  const [layout, setLayout] = React.useState([]);
   const [startDrag, setStartDrag] = React.useState(false);
   const [axis, setAxis] = React.useState({ x: 0, y: 0 });
   const [layoutElement, setLayoutElement] = React.useState({
@@ -26,10 +24,9 @@ export default React.memo(function ReactGridNoVerticalCompact() {
 
   let props = {
     className: "layout",
-    items: items || [],
+    items,
     cols: 12,
     rowHeight: 30,
-    // verticalCompact: false,
   };
 
   function generateDOM() {
@@ -82,8 +79,6 @@ export default React.memo(function ReactGridNoVerticalCompact() {
   }
 
   function onDrop(layout: any, layoutItem: any, _event: any) {
-    console.log("layoutItem", layoutItem);
-
     if (startDrag) {
       items = items.map((item: any) => {
         if (item.x == axis.x && item.y == axis.y) {
@@ -105,8 +100,6 @@ export default React.memo(function ReactGridNoVerticalCompact() {
         y: layoutItem.y,
       });
     }
-
-    console.log(items);
 
     change(items);
     setLayoutElement({
